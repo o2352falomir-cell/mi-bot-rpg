@@ -1,8 +1,8 @@
 import { makeWASocket, useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI } from '@google/generative-ai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
+const ai = new GoogleGenAI(process.env.GEMINI_API_KEY );
+const ai = aiFactory.getGenerativemodel({ model: 'gemini-1.5-flash' });
 // 1. SISTEMA (BIBLIOTECA)
 const PROMPT_BIBLIOTECA = `
 Actúas como la Biblioteca, Enciclopedia y Reglamento Oficial del RPG de Naruto. Tu función es meramente informativa y normativa.
@@ -121,11 +121,9 @@ async function iniciarBot() {
                 const tieneCorchetes = textoChat.includes('[') && textoChat.includes(']');
 
                 if (esGrupoInformativo || tieneCorchetes) {
-                    const response = await ai.models.generateContent({
-                        model: 'gemini-2.5-flash',
-                        contents: [{ role: 'user', parts: [{ text: promptElegido + "\n\nMensaje enviado en el grupo:\n" + textoChat }] }],
-                    });
-                    await sock.sendMessage(idGrupo, { text: response.text });
+                    const result = await ai.generateContent(promptElegido + "\n\nMensaje enviado en el grupo:\n" + textoChat }] }],
+                    const response = await result.response;
+                    await sock.sendMessage(idGrupo, { text: response.text() });
                 }
             }
         } catch (error) {
