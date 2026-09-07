@@ -1,7 +1,7 @@
 import { makeWASocket, useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
 import { GoogleGenAI } from '@google/generative-ai';
 
-const ai = new GoogleGenAI(process.env.GEMINI_API_KEY );
+const aiFactory = new GoogleGenAI(process.env.GEMINI_API_KEY );
 const ai = aiFactory.getGenerativemodel({ model: 'gemini-1.5-flash' });
 // 1. SISTEMA (BIBLIOTECA)
 const PROMPT_BIBLIOTECA = `
