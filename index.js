@@ -61,7 +61,7 @@ REGLAS:
 `;
 
 async function iniciarBot() {
-    const { state, saveCreds } = await useMultiFileAuthState('sesion_whatsapp');
+    const { state, saveCreds } = await useMultiFileAuthState('nueva_sesion_rpg');
     
     const sock = makeWASocket({
         auth: state,
