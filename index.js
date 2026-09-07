@@ -1,5 +1,5 @@
 import { makeWASocket, useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
-import { GoogleGenAI } from '@google/genarative-ai';
+import { GoogleGenAI } from '@google/generative-ai';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
